@@ -175,6 +175,12 @@
     ticker = null;
     const card = $('#progress-card');
     card.classList.add('done');
+    // Collapse the progress card shortly after everything finishes
+    clearTimeout(finish.hideTimer);
+    finish.hideTimer = setTimeout(() => {
+      card.classList.add('collapsing');
+      setTimeout(() => { if (card.classList.contains('collapsing')) card.hidden = true; }, 450);
+    }, 1200);
     const failed = state.taskKeys.filter(k => state.tasks[k].status === 'error').length;
     $('#progress-title').textContent = failed ? `Audit finished with ${failed} error${failed > 1 ? 's' : ''}` : 'Audit complete';
     $('#scan-btn').disabled = false;
@@ -229,9 +235,12 @@
     $('#results').hidden = false;
     $('#r-url').textContent = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
     $('#r-meta').textContent = `${DEVICE_LABEL[strategy]} · ${state.startedAt.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}`;
-    $('#progress-card').classList.remove('done');
+    clearTimeout(finish.hideTimer);
+    $('#progress-card').hidden = false;
+    $('#progress-card').classList.remove('done', 'collapsing');
     $('#progress-title').textContent = 'Running your audit…';
     $('#cta-band').hidden = true;
+    $('#hero').classList.add('compact');
     ['speed', 'seo', 'crawl', 'ux'].forEach(k => {
       const sec = $(`#section-${k}`);
       sec.innerHTML = state.tabs.includes(k) ? panelHead(TAB_LABEL[k]) + `<div class="loading-box"><span class="spinner"></span>Running ${TAB_LABEL[k].toLowerCase()}… results appear here automatically.</div>` : '';
@@ -388,7 +397,9 @@
 
   function resumeTicker() {
     if (!ticker && state) {
-      $('#progress-card').classList.remove('done');
+      clearTimeout(finish.hideTimer);
+      $('#progress-card').hidden = false;
+      $('#progress-card').classList.remove('done', 'collapsing');
       $('#progress-title').textContent = 'Running your audit…';
       ticker = setInterval(tick, 250);
     }

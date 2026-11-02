@@ -576,3 +576,21 @@ a.lh-url:hover { color: var(--accent); }
   .seg { width: 100%; }
   .seg button { flex: 1; justify-content: center; padding: 8px 6px; font-size: 13px; }
 }
+
+/* Progress card collapses after the audit finishes */
+.progress-card { transition: opacity .4s ease, transform .4s ease, max-height .45s ease, margin .45s ease, padding .45s ease; max-height: 900px; overflow: hidden; }
+.progress-card.collapsing { opacity: 0; transform: translateY(-6px); max-height: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; border-width: 0; }
+
+/* Compact hero once a scan has started: just the title and the search */
+.hero.compact { padding: 30px 0 18px; }
+.hero.compact .eyebrow, .hero.compact .lede, .hero.compact .powered, .hero.compact h1 br { display: none; }
+.hero.compact h1 { font-size: clamp(24px, 3vw, 36px); letter-spacing: -0.03em; margin-bottom: 18px; white-space: nowrap; }
+.hero.compact .scan-card { max-width: 900px; padding: 10px; }
+.hero.compact .url-field input { height: 46px; }
+.hero.compact .btn-lg { --h: 48px; }
+.hero.compact .options { padding-top: 10px; }
+.hero.compact + .results { padding-top: 12px; }
+@media (max-width: 700px) {
+  .hero.compact { padding: 20px 0 10px; }
+  .hero.compact h1 { white-space: normal; font-size: 22px; }
+}
