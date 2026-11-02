@@ -1,7 +1,16 @@
 {
   "functions": {
-    "api/psi.js": { "maxDuration": 60 },
-    "api/ux.js": { "maxDuration": 60 },
-    "api/seo.js": { "maxDuration": 30 }
+    "api/psi.js": {
+      "maxDuration": 60
+    },
+    "api/ux.js": {
+      "maxDuration": 60
+    },
+    "api/seo.js": {
+      "maxDuration": 60
+    },
+    "api/crawl.js": {
+      "maxDuration": 60
+    }
   }
 }

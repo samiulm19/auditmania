@@ -33,7 +33,7 @@
       <div class="wrap hero-inner">
         <p class="eyebrow"><span class="dot"></span> Free · No signup · ~60 seconds</p>
         <h1>Find out why your website<br>isn't <em>converting.</em></h1>
-        <p class="lede">Get a speed, SEO and UX/CRO report for any page. Real Google PageSpeed data, an on-page SEO checklist and an AI review of your layout.</p>
+        <p class="lede">Get a speed, SEO and UX/CRO report for your website. Real Google PageSpeed data, a full-site SEO crawl and a UX review of your layout.</p>
 
         <form id="scan-form" class="scan-card" novalidate>
           <label class="sr-only" for="url">Website URL</label>
@@ -57,6 +57,7 @@
               <legend class="opt-label">Device</legend>
               <label><input type="radio" name="strategy" value="mobile" checked><span>Mobile</span></label>
               <label><input type="radio" name="strategy" value="desktop"><span>Desktop</span></label>
+              <label><input type="radio" name="strategy" value="both"><span>Both</span></label>
             </fieldset>
           </div>
           <p class="form-error" id="form-error" role="alert" hidden></p>
@@ -67,7 +68,7 @@
 
     <!-- RESULTS -->
     <section class="results" id="results" hidden aria-live="polite">
-      <div class="wrap">
+      <div class="wrap wrap-wide">
         <div class="results-head">
           <div>
             <p class="eyebrow small">Audit report</p>
@@ -75,32 +76,53 @@
             <p class="r-meta" id="r-meta"></p>
           </div>
           <div class="results-actions">
-            <button class="btn btn-ghost btn-sm" id="copy-link" type="button">Copy report link</button>
+            <button class="btn btn-primary btn-sm" id="download-pdf" type="button" disabled>
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>Download PDF
+            </button>
+            <button class="btn btn-ghost btn-sm" id="copy-link" type="button">Copy link</button>
             <button class="btn btn-ghost btn-sm" id="new-scan" type="button">New scan</button>
           </div>
         </div>
 
-        <div class="progress-card" id="progress-card">
-          <div class="progress-top">
-            <strong id="progress-title">Running your audit…</strong>
-            <span class="mono" id="progress-pct">0%</span>
+        <div class="results-layout">
+          <div class="results-main">
+            <div class="progress-card" id="progress-card">
+              <div class="progress-top">
+                <strong id="progress-title">Running your audit…</strong>
+                <span class="mono" id="progress-pct">0%</span>
+              </div>
+              <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar"><span></span></div>
+              <ul class="tasks" id="task-list"></ul>
+            </div>
+
+            <div class="scores" id="scores" hidden></div>
+
+            <div class="report-tabs" id="report-tabs" role="tablist" aria-label="Report sections" hidden></div>
+            <div id="section-speed" class="panel" role="tabpanel" hidden></div>
+            <div id="section-seo" class="panel" role="tabpanel" hidden></div>
+            <div id="section-crawl" class="panel" role="tabpanel" hidden></div>
+            <div id="section-ux" class="panel" role="tabpanel" hidden></div>
+
+            <div class="cta-band" id="cta-band" hidden>
+              <div>
+                <h3>Want a human to fix this?</h3>
+                <p>Get a manual UX/CRO audit with a video walkthrough and a prioritized fix list, delivered in 72 hours.</p>
+              </div>
+              <button class="btn btn-primary btn-lg" data-open-lead="Full Audit">Get full audit</button>
+            </div>
           </div>
-          <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar"><span></span></div>
-          <ul class="tasks" id="task-list"></ul>
-        </div>
 
-        <div class="scores" id="scores" hidden></div>
-
-        <div id="section-speed" class="panel" hidden></div>
-        <div id="section-seo" class="panel" hidden></div>
-        <div id="section-ux" class="panel" hidden></div>
-
-        <div class="cta-band" id="cta-band" hidden>
-          <div>
-            <h3>Want a human to fix this?</h3>
-            <p>Get a manual UX/CRO audit with a video walkthrough and a prioritized fix list, delivered in 72 hours.</p>
-          </div>
-          <button class="btn btn-primary btn-lg" data-open-lead="Full Audit">Get full audit</button>
+          <aside class="preview" id="preview" aria-label="Website preview">
+            <div class="preview-head">
+              <strong>Website preview</strong>
+              <div class="preview-devices" id="preview-devices" hidden></div>
+            </div>
+            <div class="preview-frame" id="preview-frame">
+              <div class="browser-bar"><i></i><i></i><i></i><span id="preview-host"></span></div>
+              <div class="preview-body" id="preview-body"><div class="preview-empty"><span class="spinner"></span>Capturing preview…</div></div>
+            </div>
+            <a class="preview-open" id="preview-open" href="#" target="_blank" rel="noopener nofollow">Open website ↗</a>
+          </aside>
         </div>
       </div>
     </section>
@@ -117,13 +139,13 @@
           </article>
           <article class="feature">
             <span class="f-num mono">02</span>
-            <h3>SEO checklist</h3>
-            <p>19 on-page checks: titles, meta, headings, schema, sitemap, robots.txt, alt text, canonical and more.</p>
+            <h3>Full site SEO</h3>
+            <p>100+ checks like Semrush and Ahrefs: indexability, on-page, links, images, schema, security, sitemap and robots.txt, plus a crawl of your whole site for broken pages and duplicates.</p>
           </article>
           <article class="feature">
             <span class="f-num mono">03</span>
-            <h3>AI UX / CRO review</h3>
-            <p>An AI reviews a screenshot of your page for clarity, calls-to-action, trust and friction, and tells you what to change.</p>
+            <h3>UX / CRO audit</h3>
+            <p>55+ conversion checks for your headline, CTAs, trust signals, forms, contact options and tracking, plus an optional AI review of your page.</p>
           </article>
         </div>
       </div>
@@ -207,6 +229,8 @@
     </div>
   </dialog>
 
+  <script src="/speed.js"></script>
+  <script src="/pdf.js"></script>
   <script src="/app.js"></script>
 </body>
 </html>
