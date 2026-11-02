@@ -1,0 +1,14 @@
+{
+  "name": "site-audit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "demo": "DEMO_MODE=1 node server.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "cheerio": "^1.0.0"
+  }
+}

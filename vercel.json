@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/psi.js": { "maxDuration": 60 },
+    "api/ux.js": { "maxDuration": 60 },
+    "api/seo.js": { "maxDuration": 30 }
+  }
+}

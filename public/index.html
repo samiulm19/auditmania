@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AuditLab — Free Website Speed, SEO & UX Audit</title>
+  <meta name="description" content="Check your website's speed, SEO and conversion UX in one free report. Powered by Google PageSpeed data and an AI UX review.">
+  <meta property="og:title" content="AuditLab — Free Website Audit">
+  <meta property="og:description" content="Speed, SEO and UX/CRO report for any website in under a minute.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="/" class="logo" aria-label="AuditLab home">
+        <span class="logo-mark" aria-hidden="true"></span>AuditLab
+      </a>
+      <nav class="topnav">
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <button class="btn btn-ghost btn-sm" data-open-lead="Full Audit">Get expert audit</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO / FORM -->
+    <section class="hero" id="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow"><span class="dot"></span> Free · No signup · ~60 seconds</p>
+        <h1>Find out why your website<br>isn't <em>converting.</em></h1>
+        <p class="lede">Get a speed, SEO and UX/CRO report for any page. Real Google PageSpeed data, an on-page SEO checklist and an AI review of your layout.</p>
+
+        <form id="scan-form" class="scan-card" novalidate>
+          <label class="sr-only" for="url">Website URL</label>
+          <div class="url-row">
+            <div class="url-field">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+              <input id="url" name="url" type="text" inputmode="url" autocomplete="url" placeholder="yourwebsite.com" required>
+            </div>
+            <button class="btn btn-primary btn-lg" type="submit" id="scan-btn">Run free audit</button>
+          </div>
+
+          <div class="options">
+            <fieldset class="chips" aria-label="Choose tests">
+              <legend class="opt-label">Tests</legend>
+              <label class="chip"><input type="checkbox" name="test" value="all" checked><span>All tests</span></label>
+              <label class="chip"><input type="checkbox" name="test" value="speed" checked><span>Speed</span></label>
+              <label class="chip"><input type="checkbox" name="test" value="seo" checked><span>SEO</span></label>
+              <label class="chip"><input type="checkbox" name="test" value="ux" checked><span>AI UX / CRO</span></label>
+            </fieldset>
+            <fieldset class="segmented" aria-label="Device">
+              <legend class="opt-label">Device</legend>
+              <label><input type="radio" name="strategy" value="mobile" checked><span>Mobile</span></label>
+              <label><input type="radio" name="strategy" value="desktop"><span>Desktop</span></label>
+            </fieldset>
+          </div>
+          <p class="form-error" id="form-error" role="alert" hidden></p>
+        </form>
+        <p class="powered">Speed data from Google PageSpeed Insights · UX review by AI</p>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="results" id="results" hidden aria-live="polite">
+      <div class="wrap">
+        <div class="results-head">
+          <div>
+            <p class="eyebrow small">Audit report</p>
+            <h2 id="r-url" class="r-url"></h2>
+            <p class="r-meta" id="r-meta"></p>
+          </div>
+          <div class="results-actions">
+            <button class="btn btn-ghost btn-sm" id="copy-link" type="button">Copy report link</button>
+            <button class="btn btn-ghost btn-sm" id="new-scan" type="button">New scan</button>
+          </div>
+        </div>
+
+        <div class="progress-card" id="progress-card">
+          <div class="progress-top">
+            <strong id="progress-title">Running your audit…</strong>
+            <span class="mono" id="progress-pct">0%</span>
+          </div>
+          <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar"><span></span></div>
+          <ul class="tasks" id="task-list"></ul>
+        </div>
+
+        <div class="scores" id="scores" hidden></div>
+
+        <div id="section-speed" class="panel" hidden></div>
+        <div id="section-seo" class="panel" hidden></div>
+        <div id="section-ux" class="panel" hidden></div>
+
+        <div class="cta-band" id="cta-band" hidden>
+          <div>
+            <h3>Want a human to fix this?</h3>
+            <p>Get a manual UX/CRO audit with a video walkthrough and a prioritized fix list, delivered in 72 hours.</p>
+          </div>
+          <button class="btn btn-primary btn-lg" data-open-lead="Full Audit">Get full audit</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how">
+      <div class="wrap">
+        <h2 class="section-title">What's in the free report</h2>
+        <div class="features">
+          <article class="feature">
+            <span class="f-num mono">01</span>
+            <h3>Speed test</h3>
+            <p>Core Web Vitals and a Lighthouse score straight from Google PageSpeed Insights, plus the fixes that save the most time.</p>
+          </article>
+          <article class="feature">
+            <span class="f-num mono">02</span>
+            <h3>SEO checklist</h3>
+            <p>19 on-page checks: titles, meta, headings, schema, sitemap, robots.txt, alt text, canonical and more.</p>
+          </article>
+          <article class="feature">
+            <span class="f-num mono">03</span>
+            <h3>AI UX / CRO review</h3>
+            <p>An AI reviews a screenshot of your page for clarity, calls-to-action, trust and friction, and tells you what to change.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section alt" id="pricing">
+      <div class="wrap">
+        <h2 class="section-title">Need more than an automatic report?</h2>
+        <div class="plans">
+          <article class="plan">
+            <h3>Free scan</h3>
+            <p class="price">$0</p>
+            <ul>
+              <li>Speed, SEO and UX scores</li>
+              <li>Top 3 UX issues</li>
+              <li>Instant results</li>
+            </ul>
+            <a href="#hero" class="btn btn-ghost">Run a scan</a>
+          </article>
+          <article class="plan">
+            <h3>Quick audit</h3>
+            <p class="price">$49</p>
+            <ul>
+              <li>10-minute video walkthrough</li>
+              <li>Top 10 fixes, ranked by impact</li>
+              <li>Delivered in 48 hours</li>
+            </ul>
+            <button class="btn btn-ghost" data-open-lead="Quick Audit">Request</button>
+          </article>
+          <article class="plan featured">
+            <span class="badge">Most popular</span>
+            <h3>Full UX/CRO audit</h3>
+            <p class="price">$199</p>
+            <ul>
+              <li>Manual review of key pages</li>
+              <li>PDF report + video walkthrough</li>
+              <li>Priority roadmap + fix estimate</li>
+              <li>Fee credited if we do the fixes</li>
+            </ul>
+            <button class="btn btn-primary" data-open-lead="Full Audit">Get full audit</button>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>© <span id="year"></span> AuditLab</span>
+      <span>Scores are estimates and can vary between runs.</span>
+    </div>
+  </footer>
+
+  <!-- LEAD MODAL -->
+  <dialog id="lead-modal" class="modal" aria-labelledby="lead-title">
+    <form id="lead-form" class="modal-body" novalidate>
+      <button type="button" class="modal-close" aria-label="Close" data-close>&times;</button>
+      <h3 id="lead-title">Get your expert audit</h3>
+      <p class="muted">Tell us where to send it. We reply within one business day.</p>
+      <div class="field"><label for="l-name">Name</label><input id="l-name" name="name" required autocomplete="name"></div>
+      <div class="field"><label for="l-email">Email</label><input id="l-email" name="email" type="email" required autocomplete="email"></div>
+      <div class="field"><label for="l-site">Website</label><input id="l-site" name="website" placeholder="yourwebsite.com"></div>
+      <div class="field">
+        <label for="l-plan">Plan</label>
+        <select id="l-plan" name="plan">
+          <option>Quick Audit</option>
+          <option>Full Audit</option>
+          <option>Fix my website</option>
+        </select>
+      </div>
+      <div class="field"><label for="l-msg">Anything we should know? <span class="muted">(optional)</span></label><textarea id="l-msg" name="message" rows="3"></textarea></div>
+      <input type="text" name="company_site" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="form-error" id="lead-error" role="alert" hidden></p>
+      <button class="btn btn-primary btn-block" type="submit">Send request</button>
+    </form>
+    <div class="modal-body" id="lead-done" hidden>
+      <h3>Request received 🎉</h3>
+      <p class="muted">Thanks! We'll email you within one business day.</p>
+      <button class="btn btn-ghost btn-block" data-close>Close</button>
+    </div>
+  </dialog>
+
+  <script src="/app.js"></script>
+</body>
+</html>
